@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Hojita</title>
+</head>
+
+<body>
+
+    <h1>Editar Hojita</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Nombre:</label>
+        <input type="text" name="name" value="{{ hojita.name }}">
+
+        <br><br>
+
+        <label>Precio:</label>
+        <input type="number" name="price" step="0.01" value="{{ hojita.price }}">
+
+        <br><br>
+
+        <label>Descripción:</label>
+        <textarea name="description">{{ hojita.description }}</textarea>
+
+        <br><br>
+
+        <p>Imagen actual:</p>
+        <img src="{{ hojita.imagen.url }}" width="200">
+
+        <br><br>
+
+        <label>Cambiar imagen:</label>
+        <input type="file" name="imagen">
+
+        <br><br>
+
+        <button type="submit">Guardar cambios</button>
+    </form>
+
+</body>
+
+</html>
