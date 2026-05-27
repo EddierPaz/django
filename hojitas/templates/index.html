@@ -1,19 +1,63 @@
-{% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block titulo %} Lista de hojas {% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Inicio{% endblock %}</title>
-</head>
+{% block contenido %}
+<div class="card mt-4">
+    <div class="card-header fw-bold">
+        <a name="" id="" class="btn btn-success" href="{% url 'crear_hojita' %}" role="button">Agregar nueva hoja</a>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title mb-4">Hojas Registradas</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hoja in hojas %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
 
-<body>
+                        <td>{{ hoja.nombre }}</td>
+                        <td>${{ hoja.precio }}</td>
+                        <td>
+                            {% if hoja.imagen %}
+                            <img src="{{ hoja.imagen.url }}" alt="{{ hoja.nombre }}"
+                                style="max-width: 60px; height: auto;" class="img-thumbnail">
+                            {% else %}
+                            <span class="text-muted">Sin imagen</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ hoja.descripcion }}</td>
 
-    {% block content %}
-    <h1>Bienvenido a la tienda de hojas de hielo</h1>
-    {% endblock %}
-
-</body>
-
-</html>
+                        <td class="text-center">
+                            <a class="btn btn-info btn-sm" href="{% url 'editar_hojita' hoja.id %}"
+                                role="button">Editar</a>
+                            <form action="{% url 'eliminar_hojita' hoja.id %}" method="POST" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Seguro de eliminar?');">Borrar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">No hay registros disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer text-muted small">
+        Total de registros gestionados
+    </div>
+</div>
+{% endblock %}

@@ -1,10 +1,18 @@
 from django.db import models
 
 class Hojas(models.Model):
-    name = models.CharField('name sheet', max_length=100)
-    price = models.FloatField('price sheet')
-    imagen = models.ImageField(upload_to='hojitas')
-    description = models.TextField('description sheet')
+    id=models.AutoField(primary_key=True)
+    nombre=models.CharField(max_length=100,
+    verbose_name='Nombre',default=None)
+    precio=models.PositiveIntegerField(verbose_name='Precio',default=0)
+    imagen=models.ImageField(upload_to='imagenes/',
+    null=True,verbose_name='Imagen')
+    descripcion=models.TextField(null=True,verbose_name='Descripción')
 
     def __str__(self):
-        return f"{self.name} - {self.price}"
+        fila="Nombre:"+self.nombre + " - " + "Precio:" + str(self.precio) + " Descripción:" + self.descripcion
+        return fila
+
+    def delete(self,using=None,keep_parents=False): 
+        self.imagen.storage.delete(self.imagen.name)
+        super().delete()

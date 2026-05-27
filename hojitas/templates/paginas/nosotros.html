@@ -1,24 +1,12 @@
-{% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Nosotros{% endblock %}</title>
-</head>
-
-<body>
-    {% block content %}
-    <h1>Sobre nosotros</h1>
-    <p>Somos una tienda dedicada a la venta de hojas de hielo de alta calidad. Nuestro objetivo es proporcionar a
-        nuestros clientes productos frescos y deliciosos para disfrutar en cualquier ocasión.</p>
-    <p>Nuestra pasión por las hojas de hielo nos impulsa a ofrecer una amplia variedad de sabores y opciones para
-        satisfacer los gustos de todos nuestros clientes. Desde los clásicos hasta los más innovadores, tenemos algo
-        para cada paladar.</p>
-    <p>En nuestra tienda, nos comprometemos a brindar un excelente servicio al cliente y a garantizar la satisfacción de
-        cada persona que nos visite. ¡Ven y descubre el mundo de las hojas de hielo con nosotros!</p>
-    {% endblock %}
-</body>
-
-</html>
+{% extends "base.html" %}
+{% block titulo %} Nosotros {% endblock %}
+{% block contenido %}
+<h1>Sobre nosotros</h1>
+<p>Somos una tienda dedicada a la venta de hojas de hielo de alta calidad. Nuestro objetivo es proporcionar a
+    nuestros clientes productos frescos y deliciosos para disfrutar en cualquier ocasión.</p>
+<p>Nuestra pasión por las hojas de hielo nos impulsa a ofrecer una amplia variedad de sabores y opciones para
+    satisfacer los gustos de todos nuestros clientes. Desde los clásicos hasta los más innovadores, tenemos algo
+    para cada paladar.</p>
+<p>En nuestra tienda, nos comprometemos a brindar un excelente servicio al cliente y a garantizar la satisfacción de
+    cada persona que nos visite. ¡Ven y descubre el mundo de las hojas de hielo con nosotros!</p>
+{% endblock %}

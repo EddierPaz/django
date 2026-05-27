@@ -15,22 +15,26 @@
         {% csrf_token %}
 
         <label>Nombre:</label>
-        <input type="text" name="name" value="{{ hojita.name }}">
+        <input type="text" name="name" value="{{ hojita.nombre }}">
 
         <br><br>
 
         <label>Precio:</label>
-        <input type="number" name="price" step="0.01" value="{{ hojita.price }}">
+        <input type="number" name="price" value="{{ hojita.precio }}">
 
         <br><br>
 
         <label>Descripción:</label>
-        <textarea name="description">{{ hojita.description }}</textarea>
+        <textarea name="description">{{ hojita.descripcion }}</textarea>
 
         <br><br>
 
         <p>Imagen actual:</p>
+        {% if hojita.imagen %}
         <img src="{{ hojita.imagen.url }}" width="200">
+        {% else %}
+        <p>No tiene imagen asignada</p>
+        {% endif %}
 
         <br><br>
 
