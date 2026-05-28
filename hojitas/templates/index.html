@@ -25,25 +25,23 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
 
-                        <td>{{ hoja.nombre }}</td>
-                        <td>${{ hoja.precio }}</td>
+                        <td>{{ hoja.name }}</td>
+                        <td>${{ hoja.price }}</td>
                         <td>
                             {% if hoja.imagen %}
-                            <img src="{{ hoja.imagen.url }}" alt="{{ hoja.nombre }}"
+                            <img src="{{ hoja.imagen.url }}" alt="{{ hoja.name }}"
                                 style="max-width: 60px; height: auto;" class="img-thumbnail">
                             {% else %}
                             <span class="text-muted">Sin imagen</span>
                             {% endif %}
                         </td>
-                        <td>{{ hoja.descripcion }}</td>
-
+                        <td>{{ hoja.description }}</td>
                         <td class="text-center">
                             <a class="btn btn-info btn-sm" href="{% url 'editar_hojita' hoja.id %}"
-                                role="button">Editar</a>
+                                role="button">Editar</a> |
                             <form action="{% url 'eliminar_hojita' hoja.id %}" method="POST" style="display:inline;">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro de eliminar?');">Borrar</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                             </form>
                         </td>
                     </tr>
